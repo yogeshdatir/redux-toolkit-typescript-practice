@@ -2,17 +2,14 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 import { addTodo, removeTodo } from './redux/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './redux/store';
 import { TTodo } from './types/todoTypes';
 import { getTodos } from './apis/todoAPIs';
+import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 
 function App() {
-  const { todos, isLoading, error } = useSelector(
-    (state: RootState) => state.todos
-  );
+  const { todos, isLoading, error } = useAppSelector((state) => state.todos);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const [todo, setTodo] = useState<TTodo>(null);
 
